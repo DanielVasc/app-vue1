@@ -6,10 +6,9 @@ export default {
     let nome = ref("");
     let email = ref("");
     let nascimento = ref(null);
-    let texto = ref("")
+    let bio = ref("")
     const senha = ref('senha');
-    const senhaC = ref('senhaC');
-    let selecionar = ref("");
+    const Csenha = ref('Csenha');
     const SEst = ref("");
     const SHob = ref([]);
     const SLing = ref([]);
@@ -26,7 +25,7 @@ export default {
       { id: "Goiás", name: "GO" },
       { id: "Maranhão", name: "MA" },
       { id: "Mato Grosso", name: "MT" },
-      { id: "Mato Grosso do Su", name: "MS" },
+      { id: "Mato Grosso do Sul", name: "MS" },
       { id: "Minas Gerais", name: "MG" },
       { id: "Pará", name: "PA" },
       { id: "Paraíba", name: "PB" },
@@ -49,6 +48,11 @@ export default {
       { id: "Basquete", name: "Basquete" },
       { id: "Volei", name: "Volei" },
       { id: "Tênis", name: "Tênis" },
+      { id: "Pesca", name: "Pesca" },
+      { id: "Pintura", name: "Pintura" },
+      { id: "Livros", name: "Livros" },
+      { id: "Robotica", name: "Robotica" },
+      { id: "Programação", name: "Programação" },
       { id: "Natação", name: "Natação" },
     ]);
 
@@ -60,8 +64,8 @@ export default {
       { id: "Ruby", name: "Ruby" },
     ]);
 
-    const validarSenha = () => {
-      if (senha.value === senhaC.value) {
+    const Vsenha = () => {
+      if (senha.value === Csenha.value) {
         return true;
       } else {
         alert("As senhas não são iguais");
@@ -70,7 +74,7 @@ export default {
     };
 
     const enviar = () => {
-      if (validarSenha()) {
+      if (Vsenha()) {
         const info = {
           nome: nome.value,
           email: email.value,
@@ -78,7 +82,7 @@ export default {
           estado: SEst.value,
           hob: SHob.value,
           linguagens: SLing.value,
-          biografia: texto.value,
+          biografia: bio.value,
         };
         alert(`Informações: \n${JSON.stringify(info, null, 2)}`);
       }
@@ -88,17 +92,16 @@ export default {
       nome,
       email,
       nascimento,
-      texto,
+      bio,
       senha,
-      senhaC,
-      selecionar,
+      Csenha,
       SEst,
       SHob,
       SLing,
       estados,
       hobs,
       linguagens,
-      validarSenha,
+      Vsenha,
       enviar,
     };
   },
@@ -115,7 +118,7 @@ export default {
       </div>
       <div>
         <input required type="password" v-model="senha" placeholder="Senha" />
-        <input required type="password" v-model="senhaC" placeholder="Confirmar Senha" />
+        <input required type="password" v-model="Csenha" placeholder="Confirmar Senha" />
       </div>
     </div>
 
@@ -148,7 +151,7 @@ export default {
     </div>
 
     <p>Escreva sua biografia</p>
-    <textarea v-model="texto" />
+    <textarea v-model="bio" />
     <p style="white-space: pre-line;">
     </p>
 
