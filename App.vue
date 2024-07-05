@@ -10,9 +10,9 @@ export default {
     const senha = ref('senha');
     const senhaC = ref('senhaC');
     let selecionar = ref("");
-    const selecionarEst = ref("");
-    const selecionarHob = ref(null);
-    const selecionarLing = ref(null);
+    const SEst = ref("");
+    const SHob = ref([]);
+    const SLing = ref([]);
 
     const estados = ref([
       { id: "Acre", name: "AC" },
@@ -64,7 +64,7 @@ export default {
       if (senha.value === senhaC.value) {
         return true;
       } else {
-        alert("As senhas não coincidem");
+        alert("As senhas não são iguais");
         return false;
       }
     };
@@ -75,12 +75,12 @@ export default {
           nome: nome.value,
           email: email.value,
           nascimento: nascimento.value,
-          estado: selecionarEst.value,
-          hob: selecionarHob.value,
-          linguagens: selecionarLing.value,
+          estado: SEst.value,
+          hob: SHob.value,
+          linguagens: SLing.value,
           biografia: texto.value,
         };
-        alert(`Dados enviados com sucesso! \n${JSON.stringify(info, null, 2)}`);
+        alert(`Informações: \n${JSON.stringify(info, null, 2)}`);
       }
     };
 
@@ -92,9 +92,9 @@ export default {
       senha,
       senhaC,
       selecionar,
-      selecionarEst,
-      selecionarHob,
-      selecionarLing,
+      SEst,
+      SHob,
+      SLing,
       estados,
       hobs,
       linguagens,
@@ -106,12 +106,12 @@ export default {
 </script>
 
 <template>
-  <form @submit.prevent="enviar">>
+  <form @submit.prevent="enviar">
     <div class="info">
       <div>
         <input type="text" v-model="nome" minlength="3" maxlength="20" placeholder="digite seu nome" />
         <input type="email" v-model="email" placeholder="digite seu email" />
-        <input type="date" v-model="nascimento" />
+        <input type="date" v-model="nascimento" placeholder="data de nascimento"/>
       </div>
       <div>
         <input required type="password" v-model="senha" placeholder="Senha" />
@@ -121,33 +121,33 @@ export default {
     <br>
 
     <div class="estado">
-      <select v-model="selecionarEst">
+      <select v-model="SEst">
         <option disabled value="">Selecione o estado</option>
         <option v-for="(estado, index) in estados" :key="index" :value="estado.id">
           {{ estado.name }}
         </option>
       </select>
-      <span>Selecionado: {{ selecionarEst }}</span>
+      <span> {{ SEst }} </span>
     </div>
     <br>
 
     <div class="hobs">
       <label>Qual seu hob</label>
       <div v-for="(hob, index) in hobs" :key="index">
-        <input type="radio" v-model="selecionarHob" :value="hob.id" :id="hob.id" />
+        <input type="checkbox" v-model="SHob" :value="hob.id" :id="hob.id" />
         <label :for="hob.id">{{ hob.name }}</label>
       </div>
-      <span>Selecionado: {{ selecionarHob }}</span>
+      <span> {{ SHob }} </span>
     </div>
     <br>
 
     <div class="ling">
       <label>Quais as linguagens que voce conhece</label>
       <div v-for="(ling, index) in linguagens" :key="index">
-        <input type="radio" v-model="selecionarLing" :value="ling.id" :id="ling.id" />
+        <input type="checkbox" v-model="SLing" :value="ling.id" :id="ling.id" />
         <label :for="ling.id">{{ ling.name }}</label>
       </div>
-      <span>Selecionado: {{ selecionarLing }}</span>
+      <span> {{ SLing }} </span>
     </div>
     <br>
 
