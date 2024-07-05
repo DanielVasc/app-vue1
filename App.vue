@@ -118,7 +118,6 @@ export default {
         <input required type="password" v-model="senhaC" placeholder="Confirmar Senha" />
       </div>
     </div>
-    <br>
 
     <div class="estado">
       <select v-model="SEst">
@@ -129,7 +128,6 @@ export default {
       </select>
       <span> {{ SEst }} </span>
     </div>
-    <br>
 
     <div class="hobs">
       <label>Qual seu hob</label>
@@ -139,7 +137,6 @@ export default {
       </div>
       <span> {{ SHob }} </span>
     </div>
-    <br>
 
     <div class="ling">
       <label>Quais as linguagens que voce conhece</label>
@@ -149,7 +146,6 @@ export default {
       </div>
       <span> {{ SLing }} </span>
     </div>
-    <br>
 
     <p>Escreva sua biografia</p>
     <textarea v-model="texto" />
